@@ -39,12 +39,15 @@ public class Project2 {
 		System.out.println("\nMiddle Atlantic Priority Queue Contents:");
 		middleAtlanticPG.printQueue();
 
+		// Remove states from the South Pacific Priority Group and push them onto the stack.
 		while (!southPacificPG.isEmpty()) {
 			stack.push(southPacificPG.remove());
 		}
+		// Remove states from the West Priority Group and push them onto the stack.
 		while (!westPG.isEmpty()) {
 			stack.push(westPG.remove());
 		}
+		// Remove states from the Middle Atlantic Priority Group and push them onto the stack.
 		while (!middleAtlanticPG.isEmpty()) {
 			stack.push(middleAtlanticPG.remove());
 		}
