@@ -1,9 +1,49 @@
 import java.io.*;
 
+/**
+ * COP 3538: Project 2 – Stacks and Priority Queues - Summer 2019
+ * <p>
+ * This class is the starting point to the program with the main method. There
+ * is no user input for this program, you only need to provide a CSV file for
+ * the program to use.<br>
+ * 
+ * The program will read a csv file (States2.csv), then import states from the
+ * following regions: South Pacific, West, and Middle Atlantic. These states
+ * will be added to a single stack as state objects, and then displayed to the
+ * user.<br>
+ * The program will then pop the states from the stack one by one into 3
+ * separate priority queues for their respective regions. Within these priority
+ * queues, the states will be sorted by their populations. With the greatest
+ * population having the highest priority. The program will then print all 3
+ * queues.<br>
+ * The program will then remove the states from the priority queues one by one
+ * in this order: South Pacific, West, Middle Atlantic. The removed states
+ * will be places back onto the stack and the stack will be displayed one last
+ * time.
+ * <p>
+ * 
+ * @author Michael Whalen (n01425161)
+ * @version 1.0, 06/14/2019
+ *
+ */
+
 public class Project2 {
 
 	private static Stack stack = new Stack();
 
+	/**
+	 * The main method for the program. This method will call the readFile
+	 * method and welcome method, then print the stack, create 3 priority
+	 * groups, pop the states from the stack into their corresponding priority
+	 * groups, print the 3 priority groups, remove the states from the 3
+	 * priority groups back onto the stack and then print the stack one final
+	 * time.
+	 * 
+	 * @param args
+	 *            Unused.
+	 * @throws IOException
+	 *             For the file I/O.
+	 */
 	public static void main(String[] args) throws IOException {
 
 		int numStates = readFile();
@@ -39,15 +79,18 @@ public class Project2 {
 		System.out.println("\nMiddle Atlantic Priority Queue Contents:");
 		middleAtlanticPG.printQueue();
 
-		// Remove states from the South Pacific Priority Group and push them onto the stack.
+		// Remove states from the South Pacific Priority Group and push them
+		// onto the stack.
 		while (!southPacificPG.isEmpty()) {
 			stack.push(southPacificPG.remove());
 		}
-		// Remove states from the West Priority Group and push them onto the stack.
+		// Remove states from the West Priority Group and push them onto the
+		// stack.
 		while (!westPG.isEmpty()) {
 			stack.push(westPG.remove());
 		}
-		// Remove states from the Middle Atlantic Priority Group and push them onto the stack.
+		// Remove states from the Middle Atlantic Priority Group and push them
+		// onto the stack.
 		while (!middleAtlanticPG.isEmpty()) {
 			stack.push(middleAtlanticPG.remove());
 		}
@@ -70,6 +113,14 @@ public class Project2 {
 
 	}
 
+	/**
+	 * This method reads the data from the specified CSV file. Then pushes the
+	 * states onto the stack.
+	 * 
+	 * @return Returns the number of states imported from the csv file.
+	 * @throws IOException
+	 *             Throws error if the cannot be read or cannot be found.
+	 */
 	private static int readFile() throws IOException {
 
 		try {
