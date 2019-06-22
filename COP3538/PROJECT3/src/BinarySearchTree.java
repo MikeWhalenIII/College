@@ -1,10 +1,14 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class BinarySearchTree {
 
 	public Node root; // Reference to the root
 	public static int nodesVisited; // Used to count the number of nodes visited
 									// during the find method.
-
+	public Node largestPopulation = null;
+	
 	public BinarySearchTree() {
 		root = null;
 	}
@@ -101,7 +105,7 @@ public class BinarySearchTree {
 				parent.leftChild = current.rightChild;
 			else
 				parent.rightChild = current.rightChild;
-		
+
 		// The node to be deleted has two children
 		else {
 			Node successor = getSuccessor(current);
@@ -158,11 +162,25 @@ public class BinarySearchTree {
 	}
 
 	public void printFiveMin() {
-
+		
 	}
 
-	public void printFiveMax() {
-
+	public void printFiveMax(Node localRoot) {
+		ArrayList<Node> topFive = new ArrayList<Node>();
+		
+		if (localRoot != null) {
+			printInorder(localRoot.leftChild);
+			topFive.add(localRoot);
+			printInorder(localRoot.rightChild);
+		}
+		
+		Collections.sort(topFive);
+		for (int j = 0; j <= 5; j++) {
+			for (Node node : topFive) {
+				node.printNode();
+				i++;
+			}
+		}
 	}
 
 	/**
