@@ -74,6 +74,8 @@ public class Project3 {
 		System.out.printf("%-25s %-15s", "State Name", "State Population");
 		System.out.println("\n------------------------------------------");
 		tree.printPostorder(tree.root);
+		
+		tree.printFiveMax(tree.root);
 
 	}
 
