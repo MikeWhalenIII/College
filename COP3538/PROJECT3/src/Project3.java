@@ -5,7 +5,11 @@ public class Project3 {
 	private static BinarySearchTree tree = new BinarySearchTree();
 
 	public static void main(String[] args) throws IOException {
+
+		// Call the method to read the file and input the data into a BST.
 		int numStates = readFile();
+
+		// Display welcome message
 		welcomeMessage(numStates);
 
 		// Print BST (Inorder Traversal)
@@ -13,61 +17,52 @@ public class Project3 {
 		System.out.printf("%-25s %-15s", "State Name", "State Population");
 		System.out.println("\n------------------------------------------");
 		tree.printInorder(tree.root);
-		
 
-		// Delete California
+		// Delete California, Florida, and New York
 		tree.delete("California");
 		System.out.println("\nCalifornia has been deleted from tree");
-		// Delete Florida
 		tree.delete("Florida");
 		System.out.println("Florida has been deleted from tree");
-		// Delete New York
 		tree.delete("New York");
 		System.out.println("New York has been deleted from tree");
-		
 
 		// Print BST (Preorder Traversal)
 		System.out.println("\nPreorder Traversal:\n");
 		System.out.printf("%-25s %-15s", "State Name", "State Population");
 		System.out.println("\n------------------------------------------");
 		tree.printPreorder(tree.root);
-		
 
 		// Find American Samoa
 		if (tree.find("American Samoa") >= 0)
-			System.out.printf("%s %,d\n", "\nAmerican Samoa is found with a population of", tree.find("American Samoa"));
+			System.out.printf("%s %,d\n", "\nAmerican Samoa is found with a population of",
+					tree.find("American Samoa"));
 		else
 			System.out.println("American Samoa is not found");
 		System.out.println(BinarySearchTree.nodesVisited + " nodes visited");
-		
+
 		// Find Rhode Island
 		if (tree.find("Rhode Island") >= 0)
 			System.out.printf("%s %,d\n", "\nRhode Island is found with a population of", tree.find("Rhode Island"));
 		else
 			System.out.println("Rhode Island is not found");
 		System.out.println(BinarySearchTree.nodesVisited + " nodes visited\n");
-		
+
 		// Find Florida
 		if (tree.find("Florida") >= 0)
 			System.out.printf("%s %,d\n", "\nFlorida is found with a population of", tree.find("Florida"));
 		else
 			System.out.println("Florida is not found");
 		System.out.println(BinarySearchTree.nodesVisited + " nodes visited");
-		
 
-		// Delete U.S. Virgin Islands
+		// Delete U.S. Virgin Islands, Wyoming, West Virginia, and New Mexico
 		tree.delete("U.S. Virgin Islands");
 		System.out.println("\nU.S. Virgin Islands has been deleted from tree");
-		// Delete Wyoming
 		tree.delete("Wyoming");
 		System.out.println("Wyoming has been deleted from tree");
-		// Delete West Virginia
 		tree.delete("West Virginia");
 		System.out.println("West Virginia has been deleted from tree");
-		// Delete New Mexico
 		tree.delete("Mexico");
 		System.out.println("Mexico has been deleted from tree");
-		
 
 		// Print BST (Postorder Traversal)
 		System.out.println("\nPostorder Traversal:\n");
@@ -75,6 +70,7 @@ public class Project3 {
 		System.out.println("\n------------------------------------------");
 		tree.printPostorder(tree.root);
 		
+		System.out.println("====");
 		tree.printFiveMax(tree.root);
 
 	}

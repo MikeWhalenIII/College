@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class BinarySearchTree {
 
@@ -15,8 +12,6 @@ public class BinarySearchTree {
 
 	public void insert(String state, int population) {
 		Node newNode = new Node(state, population);
-		newNode.stateName = state;
-		newNode.statePopulation = population;
 
 		if (root == null) {
 			root = newNode;
@@ -162,25 +157,50 @@ public class BinarySearchTree {
 	}
 
 	public void printFiveMin() {
+		//BinarySearchTree minTree = new BinarySearchTree();
+		
 		
 	}
 
 	public void printFiveMax(Node localRoot) {
-		ArrayList<Node> topFive = new ArrayList<Node>();
+		BinarySearchTree maxTree = new BinarySearchTree();
 		
 		if (localRoot != null) {
 			printInorder(localRoot.leftChild);
-			topFive.add(localRoot);
+			localRoot.printNode();
 			printInorder(localRoot.rightChild);
 		}
 		
-		Collections.sort(topFive);
-		for (int j = 0; j <= 5; j++) {
-			for (Node node : topFive) {
-				node.printNode();
-				i++;
+		insertIntoMaxTree(maxTree, localRoot);
+		printInorder(maxTree.root);
+	}
+	
+	private void insertIntoMaxTree(BinarySearchTree maxTree, Node localRoot) {
+		Node newNode = new Node(localRoot.stateName, localRoot.statePopulation);
+		
+		if (maxTree.root == null) {
+			root = newNode;
+		} else {
+			Node current = root;
+			Node parent;
+			while (true) {
+				parent = current;
+				if (localRoot.statePopulation < current.statePopulation) {
+					current = current.leftChild; // Go left
+					if (current == null) {
+						parent.leftChild = newNode;
+						return;
+					}
+				} else {
+					current = current.rightChild; // Go right
+					if (current == null) {
+						parent.rightChild = newNode;
+						return;
+					}
+				}
 			}
 		}
+
 	}
 
 	/**
@@ -204,5 +224,4 @@ public class BinarySearchTree {
 			System.out.printf("%-25s%,10d\n", stateName, statePopulation);
 		}
 	}
-
 }
