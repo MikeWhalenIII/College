@@ -163,22 +163,26 @@ public class BinarySearchTree {
 	}
 
 	public void printFiveMax(Node localRoot) {
-		BinarySearchTree maxTree = new BinarySearchTree();
-		
 		if (localRoot != null) {
-			printInorder(localRoot.leftChild);
+			printFiveMax(localRoot.leftChild);
 			localRoot.printNode();
-			printInorder(localRoot.rightChild);
+			printFiveMax(localRoot.rightChild);
 		}
-		
-		insertIntoMaxTree(maxTree, localRoot);
-		printInorder(maxTree.root);
 	}
 	
-	private void insertIntoMaxTree(BinarySearchTree maxTree, Node localRoot) {
+	public void insertIntoTree (Node localRoot)
+	{
+		if (localRoot != null) {
+			insertIntoTree(localRoot.leftChild);
+			insertIntoMaxTree(localRoot);
+			insertIntoTree(localRoot.rightChild);
+		}
+	}
+	
+	private void insertIntoMaxTree(Node localRoot) {
 		Node newNode = new Node(localRoot.stateName, localRoot.statePopulation);
 		
-		if (maxTree.root == null) {
+		if (root == null) {
 			root = newNode;
 		} else {
 			Node current = root;

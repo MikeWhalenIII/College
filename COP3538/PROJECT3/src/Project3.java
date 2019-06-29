@@ -71,7 +71,10 @@ public class Project3 {
 		tree.printPostorder(tree.root);
 		
 		System.out.println("====");
-		tree.printFiveMax(tree.root);
+		BinarySearchTree maxTree = new BinarySearchTree();
+		tree.insertIntoTree(maxTree.root);
+		
+		maxTree.printFiveMax(maxTree.root);
 
 	}
 
