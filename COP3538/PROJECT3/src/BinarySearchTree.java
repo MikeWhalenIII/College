@@ -1,16 +1,38 @@
-
+/**
+ * This class is used to implement the Binary Search Tree. When states are
+ * imported into the BST, they are organized by their state names.
+ * 
+ * @author Michael Whalen (n01425161)
+ * @version 1.0, 06/28/2019
+ */
 public class BinarySearchTree {
 
 	public Node root; // Reference to the root
 	public static int nodesVisited; // Used to count the number of nodes visited
 									// during the find method.
 	public Node largestPopulation = null;
+
+	// Create a Priority Queue to be used to find the five min/max population
+	// states.
 	PriorityQueue stateQueue = new PriorityQueue(50);
 
+	/**
+	 * Constructor
+	 */
 	public BinarySearchTree() {
 		root = null;
 	}
 
+	/**
+	 * Used to insert states into the Binary Search Tree based off of their
+	 * state names. The two parameters passed to the insert method are used to
+	 * create a new node object.
+	 * 
+	 * @param state
+	 *            The state name for the state
+	 * @param population
+	 *            The state population for the state.
+	 */
 	public void insert(String state, int population) {
 		Node newNode = new Node(state, population);
 
@@ -39,6 +61,15 @@ public class BinarySearchTree {
 
 	}
 
+	/**
+	 * This method will search for a given state name and return the states
+	 * population or -1 if the state is not found.
+	 * 
+	 * @param state
+	 *            The state name you would like to find.
+	 * @return The states population, or -1 if the state is not found.
+	 */
+
 	public int find(String state) {
 		nodesVisited = 1;
 		Node current = root;
@@ -57,6 +88,14 @@ public class BinarySearchTree {
 		}
 		return current.statePopulation;
 	}
+
+	/**
+	 * This method will delete a state from the Binary Search Tree that matched
+	 * the provided key.
+	 * 
+	 * @param state
+	 *            The name of the state you would like to remove from the BST.
+	 */
 
 	public void delete(String state) {
 		Node current = root;
@@ -116,6 +155,15 @@ public class BinarySearchTree {
 
 	}
 
+	/**
+	 * This method is used by the delete() method to find the successor of the
+	 * node to be deleted.
+	 * 
+	 * @param delNode
+	 *            The node that is to be deleted.
+	 * @return The successor.
+	 */
+
 	private Node getSuccessor(Node delNode) {
 		Node successorParent = delNode;
 		Node successor = delNode;
@@ -133,6 +181,14 @@ public class BinarySearchTree {
 		return successor;
 	}
 
+	/**
+	 * This method will inorder traverse the entire tree using recursion and
+	 * print every node along the way.
+	 * 
+	 * @param localRoot
+	 *            the current root.
+	 */
+
 	public void printInorder(Node localRoot) {
 		if (localRoot != null) {
 			printInorder(localRoot.leftChild);
@@ -140,6 +196,14 @@ public class BinarySearchTree {
 			printInorder(localRoot.rightChild);
 		}
 	}
+
+	/**
+	 * This method will preorder traverse the entire tree using recursion and
+	 * print every node along the way.
+	 * 
+	 * @param localRoot
+	 *            the current root.
+	 */
 
 	public void printPreorder(Node localRoot) {
 		if (localRoot != null) {
@@ -149,6 +213,14 @@ public class BinarySearchTree {
 		}
 	}
 
+	/**
+	 * This method will postorder traverse the entire tree using recursion and
+	 * print every node along the way.
+	 * 
+	 * @param localRoot
+	 *            the current root.
+	 */
+
 	public void printPostorder(Node localRoot) {
 		if (localRoot != null) {
 			printPostorder(localRoot.leftChild);
@@ -157,6 +229,11 @@ public class BinarySearchTree {
 		}
 	}
 
+	/**
+	 * This method will print the five minimum population states from the
+	 * priority queue.
+	 */
+
 	public void printFiveMin() {
 		System.out.println("\nStates with five minimal populations\n");
 		System.out.printf("%-25s %-15s", "State Name", "State Population");
@@ -164,12 +241,25 @@ public class BinarySearchTree {
 		stateQueue.printFiveMinFromQ();
 	}
 
+	/**
+	 * This method will print the five maximum population states from the
+	 * priority queue.
+	 */
+
 	public void printFiveMax() {
 		System.out.println("\nStates with five maximal populations\n");
 		System.out.printf("%-25s %-15s", "State Name", "State Population");
 		System.out.println("\n------------------------------------------");
 		stateQueue.printFiveMaxFromQ();
 	}
+
+	/**
+	 * This method will take a Binary Search Tree and insert the entire tree
+	 * into a Priority Queue using recursion.
+	 * 
+	 * @param localRoot
+	 *            The current root.
+	 */
 
 	public void sendBST2PQ(Node localRoot) {
 		if (localRoot != null) {
@@ -179,16 +269,39 @@ public class BinarySearchTree {
 		}
 	}
 
+	/**
+	 * This class is used to implement a priority queue using an array which
+	 * will be used to sort the states from the BST into order based off of
+	 * their populations.
+	 * 
+	 * @author Michael Whalen (n01425161)
+	 * @version 1.0, 06/28/2019
+	 */
+
 	private class PriorityQueue {
 		private int maxSize;
 		private Node[] stateQueue;
 		private int numItems;
 
+		/**
+		 * Constructor
+		 * 
+		 * @param max
+		 *            The size of the array.
+		 */
 		private PriorityQueue(int max) {
 			maxSize = max;
 			stateQueue = new Node[maxSize];
 			numItems = 0;
 		}
+
+		/**
+		 * This method will insert the states into the priority queue based off
+		 * of their population.
+		 * 
+		 * @param state
+		 *            The state.
+		 */
 
 		private void insert(Node state) {
 			int i;
@@ -209,6 +322,10 @@ public class BinarySearchTree {
 				numItems++;
 			}
 		}
+		
+		/**
+		 * This method prints the first five items from the front of the queue.
+		 */
 
 		private void printFiveMaxFromQ() {
 			for (int i = numItems - 1; i >= numItems - 5; i--) {
@@ -217,6 +334,10 @@ public class BinarySearchTree {
 			}
 		}
 
+		/**
+		 * This method prints the first five items in back of the queue.
+		 */
+		
 		private void printFiveMinFromQ() {
 			for (int i = 0; i < 5; i++) {
 				System.out.printf("%-25s%,10d\n", stateQueue[i].stateName, stateQueue[i].statePopulation);
@@ -236,11 +357,20 @@ public class BinarySearchTree {
 		Node leftChild;
 		Node rightChild;
 
+		/**
+		 * Constructor
+		 * 
+		 * @param state The state name
+		 * @param population The state population
+		 */
 		public Node(String state, int population) {
 			stateName = state;
 			statePopulation = population;
 		}
 
+		/**
+		 * This method will print a nodes state name and population.
+		 */
 		public void printNode() {
 			System.out.printf("%-25s%,10d\n", stateName, statePopulation);
 		}

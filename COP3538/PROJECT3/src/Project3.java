@@ -3,8 +3,31 @@ import java.io.*;
 /**
  * COP 3538: Project 3 – Binary Search Trees - Summer 2019
  * <p>
+ * This class is the starting point to the program with the main method. There
+ * is no user input for this program, you only need to provide a CSV file for
+ * the program to use.<br>
  * 
- * <br>
+ * 1. First, the program will read a CSV file (States3.csv), then import the
+ * states into a Binary Search Tree(BST).<br>
+ * 
+ * 2. The program will inorder traverse the BST displaying all of the states
+ * imported.<br>
+ * 
+ * 3. California, Florida, and New York will be deleted from the BST and the
+ * remaining states will be displayed using a preorder traversal.<br>
+ * 
+ * 4. The program will search for American Samoa, Rhode Island and Florida.
+ * Showing the results and the number of nodes visited during the search.<br>
+ * 
+ * 5. U.S. Virgin Islands, Wyoming, West Virginia, and New Mexico are
+ * deleted.<br>
+ * 
+ * 6. The program will then postorder traverse the entire BST, printing out the
+ * remaining states.<br>
+ * 
+ * 7. The program will then print the five minimal populations and the five
+ * maximal populations. (These two task are accomplished using a Priority
+ * Queue)<br>
  * <p>
  * 
  * @author Michael Whalen (n01425161)
@@ -14,8 +37,29 @@ import java.io.*;
 
 public class Project3 {
 
+	// Create the Binary Search Tree.
 	private static BinarySearchTree tree = new BinarySearchTree();
 
+	/**
+	 * The main method for the program. The following things happen in this main
+	 * method: - The BST is populated from the States3.csv file.<br>
+	 * - The BST is displayed using inorder traversal.<br>
+	 * - California, Florida, and New York are deleted.<br>
+	 * - The BST is displayed using preorder traversal.<br>
+	 * - A search is run, looking for American Samoa, Rhode Island, and
+	 * Florida.<br>
+	 * - U.S. Virgin Islands, Wyoming, West Virginia, and New Mexico are
+	 * deleted.<br>
+	 * - The BST is displayed using postorder traversal.<br>
+	 * - The data in the BST is pushed into a Priority Queue.<br>
+	 * - The five minimum population states are displayed.<br>
+	 * - The five maximum population states are displayed.<br>
+	 * 
+	 * @param args
+	 *            Unused.
+	 * @throws IOException
+	 *             For the file I/O.
+	 */
 	public static void main(String[] args) throws IOException {
 
 		// Call the method to read the file and input the data into a BST.
@@ -81,12 +125,13 @@ public class Project3 {
 		System.out.printf("%-25s %-15s", "State Name", "State Population");
 		System.out.println("\n------------------------------------------");
 		tree.printPostorder(tree.root);
-		
-		
-		tree.sendBST2PQ(tree.root); // Send Binary Search Tree TO Priority Queue
+
+		// Send Binary Search Tree TO Priority Queue
+		tree.sendBST2PQ(tree.root);
+
+		// Display the 5 min and 5 max population states.
 		tree.printFiveMin();
 		tree.printFiveMax();
-		
 
 	}
 
@@ -94,7 +139,7 @@ public class Project3 {
 	 * This method displays a welcome mes1sage to the user with the number of
 	 * records imported.
 	 * 
-	 * @param numRecords
+	 * @param numNodes
 	 *            takes in the number of records read in from the csv file.
 	 */
 	private static void welcomeMessage(int numNodes) {
@@ -103,8 +148,8 @@ public class Project3 {
 	}
 
 	/**
-	 * This method reads the data from the specified CSV file. Then pushes the
-	 * states onto the stack.
+	 * This method reads the data from the specified CSV file. Then inserts the
+	 * states into a Binary Search Tree.
 	 * 
 	 * @return Returns the number of states imported from the csv file.
 	 * @throws IOException
