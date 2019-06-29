@@ -1,5 +1,17 @@
 import java.io.*;
 
+/**
+ * COP 3538: Project 3 – Binary Search Trees - Summer 2019
+ * <p>
+ * 
+ * <br>
+ * <p>
+ * 
+ * @author Michael Whalen (n01425161)
+ * @version 1.0, 06/28/2019
+ *
+ */
+
 public class Project3 {
 
 	private static BinarySearchTree tree = new BinarySearchTree();
@@ -70,16 +82,16 @@ public class Project3 {
 		System.out.println("\n------------------------------------------");
 		tree.printPostorder(tree.root);
 		
-		System.out.println("====");
-		BinarySearchTree maxTree = new BinarySearchTree();
-		tree.insertIntoTree(maxTree.root);
 		
-		maxTree.printFiveMax(maxTree.root);
+		tree.sendBST2PQ(tree.root); // Send Binary Search Tree TO Priority Queue
+		tree.printFiveMin();
+		tree.printFiveMax();
+		
 
 	}
 
 	/**
-	 * This method displays a welcome message to the user with the number of
+	 * This method displays a welcome mes1sage to the user with the number of
 	 * records imported.
 	 * 
 	 * @param numRecords

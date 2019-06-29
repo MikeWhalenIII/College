@@ -5,7 +5,8 @@ public class BinarySearchTree {
 	public static int nodesVisited; // Used to count the number of nodes visited
 									// during the find method.
 	public Node largestPopulation = null;
-	
+	PriorityQueue stateQueue = new PriorityQueue(50);
+
 	public BinarySearchTree() {
 		root = null;
 	}
@@ -157,54 +158,70 @@ public class BinarySearchTree {
 	}
 
 	public void printFiveMin() {
-		//BinarySearchTree minTree = new BinarySearchTree();
-		
-		
+		System.out.println("\nStates with five minimal populations\n");
+		System.out.printf("%-25s %-15s", "State Name", "State Population");
+		System.out.println("\n------------------------------------------");
+		stateQueue.printFiveMinFromQ();
 	}
 
-	public void printFiveMax(Node localRoot) {
+	public void printFiveMax() {
+		System.out.println("\nStates with five maximal populations\n");
+		System.out.printf("%-25s %-15s", "State Name", "State Population");
+		System.out.println("\n------------------------------------------");
+		stateQueue.printFiveMaxFromQ();
+	}
+
+	public void sendBST2PQ(Node localRoot) {
 		if (localRoot != null) {
-			printFiveMax(localRoot.leftChild);
-			localRoot.printNode();
-			printFiveMax(localRoot.rightChild);
+			sendBST2PQ(localRoot.leftChild);
+			stateQueue.insert(localRoot);
+			sendBST2PQ(localRoot.rightChild);
 		}
 	}
-	
-	public void insertIntoTree (Node localRoot)
-	{
-		if (localRoot != null) {
-			insertIntoTree(localRoot.leftChild);
-			insertIntoMaxTree(localRoot);
-			insertIntoTree(localRoot.rightChild);
+
+	private class PriorityQueue {
+		private int maxSize;
+		private Node[] stateQueue;
+		private int numItems;
+
+		private PriorityQueue(int max) {
+			maxSize = max;
+			stateQueue = new Node[maxSize];
+			numItems = 0;
 		}
-	}
-	
-	private void insertIntoMaxTree(Node localRoot) {
-		Node newNode = new Node(localRoot.stateName, localRoot.statePopulation);
-		
-		if (root == null) {
-			root = newNode;
-		} else {
-			Node current = root;
-			Node parent;
-			while (true) {
-				parent = current;
-				if (localRoot.statePopulation < current.statePopulation) {
-					current = current.leftChild; // Go left
-					if (current == null) {
-						parent.leftChild = newNode;
-						return;
-					}
-				} else {
-					current = current.rightChild; // Go right
-					if (current == null) {
-						parent.rightChild = newNode;
-						return;
+
+		private void insert(Node state) {
+			int i;
+
+			if (numItems == 0) {
+				stateQueue[0] = state;
+				numItems++;
+			} else {
+				for (i = numItems - 1; i >= 0; i--) {
+
+					if (state.statePopulation < stateQueue[i].statePopulation) {
+						stateQueue[i + 1] = stateQueue[i];
+					} else {
+						break;
 					}
 				}
+				stateQueue[i + 1] = state;
+				numItems++;
 			}
 		}
 
+		private void printFiveMaxFromQ() {
+			for (int i = numItems - 1; i >= numItems - 5; i--) {
+				if (stateQueue[i] != null)
+					System.out.printf("%-25s%,10d\n", stateQueue[i].stateName, stateQueue[i].statePopulation);
+			}
+		}
+
+		private void printFiveMinFromQ() {
+			for (int i = 0; i < 5; i++) {
+				System.out.printf("%-25s%,10d\n", stateQueue[i].stateName, stateQueue[i].statePopulation);
+			}
+		}
 	}
 
 	/**
