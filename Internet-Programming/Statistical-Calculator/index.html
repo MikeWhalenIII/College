@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Statistical Calculator</title>
+    <link rel="stylesheet" href="../css/site.css">
+    <script src="script.js"></script>
+</head>
+
+<div id="p3">
+    <body>
+        <h2>Statistical Calculator</h2>
+
+        <!-- TEXT AREA -->
+        <label for="userInput">Enter 5 to 20 numbers (ranging in value between 0 and 100).<br>
+            Exactly one (1) space must separate each number.</label><br><br>
+        <textarea id="userInput" form="userForm" rows="4" cols="52" required></textarea><br>
+
+        <!-- BUTTONS (RESET, SUBMIT) -->
+
+        <form name="userForm" id="userForm" onSubmit="performStatistics(); return false">
+            <input type="reset" value="Reset">
+            <input type="submit" value="Submit"><br><br>
+        </form>
+
+        <div id="text-fields">
+            <!-- (8) TEXT FIELDS -->
+            <label for="Min">Min: </label>
+            <input type="text" name="Min" id="min" readonly><br>
+
+            <label for="Max">Max: </label>
+            <input type="text" name="Max" id="max" readonly><br>
+
+            <label for="Sum">Sum: </label>
+            <input type="text" name="Sum" id="sum" readonly><br>
+
+            <label for="Mean">Mean: </label>
+            <input type="text" name="Mean" id="mean" readonly><br>
+
+            <label for="Median">Median: </label>
+            <input type="text" name="Median" id="median" readonly><br>
+
+            <label for="Mode">Mode: </label>
+            <input type="text" name="Mode" id="mode" readonly><br>
+
+            <label for="Variance">Variance: </label>
+            <input type="text" name="Variance" id="variance" readonly><br>
+
+            <label for="Std Dev">Std Dev: </label>
+            <input type="text" name="Std Dev" id="stdDev" readonly><br><br>
+        </div>
+
+        <!-- EPORTFOLIO LINK -->
+        <a href="../index.html">ePortfolio</a>
+
+    </body>
+</div>
+
+</html>
