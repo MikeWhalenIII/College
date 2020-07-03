@@ -1,59 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <title>Statistical Calculator</title>
-    <link rel="stylesheet" href="../css/site.css">
     <script src="script.js"></script>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 
-<div id="p3">
-    <body>
-        <h2>Statistical Calculator</h2>
-
-        <!-- TEXT AREA -->
-        <label for="userInput">Enter 5 to 20 numbers (ranging in value between 0 and 100).<br>
-            Exactly one (1) space must separate each number.</label><br><br>
-        <textarea id="userInput" form="userForm" rows="4" cols="52" required></textarea><br>
-
-        <!-- BUTTONS (RESET, SUBMIT) -->
-
-        <form name="userForm" id="userForm" onSubmit="performStatistics(); return false">
-            <input type="reset" value="Reset">
-            <input type="submit" value="Submit"><br><br>
-        </form>
-
-        <div id="text-fields">
-            <!-- (8) TEXT FIELDS -->
-            <label for="Min">Min: </label>
-            <input type="text" name="Min" id="min" readonly><br>
-
-            <label for="Max">Max: </label>
-            <input type="text" name="Max" id="max" readonly><br>
-
-            <label for="Sum">Sum: </label>
-            <input type="text" name="Sum" id="sum" readonly><br>
-
-            <label for="Mean">Mean: </label>
-            <input type="text" name="Mean" id="mean" readonly><br>
-
-            <label for="Median">Median: </label>
-            <input type="text" name="Median" id="median" readonly><br>
-
-            <label for="Mode">Mode: </label>
-            <input type="text" name="Mode" id="mode" readonly><br>
-
-            <label for="Variance">Variance: </label>
-            <input type="text" name="Variance" id="variance" readonly><br>
-
-            <label for="Std Dev">Std Dev: </label>
-            <input type="text" name="Std Dev" id="stdDev" readonly><br><br>
+<body>
+    <div class="containter">
+        <!-- START NAVBAR -->
+        <div class="row">
+            <div class="col">
+                <!-- Image and text -->
+                <nav class="navbar navbar-dark bg-dark">
+                    <a class="navbar-brand" href="./index.html">
+                        <img src="./images/calc.png" width="30" height="30" class="d-inline-block align-top"
+                            alt="Calculator">
+                        Statistical Calculator
+                    </a>
+                </nav>
+            </div>
         </div>
+        <!-- END NAVBAR -->
 
-        <!-- EPORTFOLIO LINK -->
-        <a href="../index.html">ePortfolio</a>
+        <!-- START CALCULATOR -->
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <!-- TEXT AREA -->
+                <label for="userInput">Enter 5 to 20 numbers (ranging in value between 0 and 100).<br>
+                    Exactly one (1) space must separate each number.</label><br><br>
+                <textarea id="userInput" class="form-control" form="userForm" rows="4" cols="52" required></textarea><br>
 
-    </body>
-</div>
+                <!-- BUTTONS (RESET, SUBMIT) -->
+
+                <form name="userForm" id="userForm" onSubmit="performStatistics(); return false">
+                    <input type="reset" class="btn btn-secondary" value="Reset">
+                    <input type="submit" class="btn btn-primary" value="Submit"><br><br>
+                </form>
+
+                <div id="text-fields">
+                    <!-- (8) TEXT FIELDS -->
+                    <label for="Min">Min: </label>
+                    <input type="text" class="form-control" name="Min" id="min" readonly>
+
+                    <label for="Max">Max: </label>
+                    <input type="text" class="form-control" name="Max" id="max" readonly>
+
+                    <label for="Sum">Sum: </label>
+                    <input type="text" class="form-control" name="Sum" id="sum" readonly>
+
+                    <label for="Mean">Mean: </label>
+                    <input type="text" class="form-control" name="Mean" id="mean" readonly>
+
+                    <label for="Median">Median: </label>
+                    <input type="text" class="form-control" name="Median" id="median" readonly>
+
+                    <label for="Mode">Mode: </label>
+                    <input type="text" class="form-control" name="Mode" id="mode" readonly>
+
+                    <label for="Variance">Variance: </label>
+                    <input type="text" class="form-control" name="Variance" id="variance" readonly>
+
+                    <label for="Std Dev">Std Dev: </label>
+                    <input type="text" class="form-control" name="Std Dev" id="stdDev" readonly>
+                </div>
+            </div>
+        </div>
+        <!-- END CALULATOR -->
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</body>
+
 
 </html>
