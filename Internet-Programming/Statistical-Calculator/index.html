@@ -14,62 +14,57 @@
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 
-<body>
-    <div class="containter">
-        <!-- START NAVBAR -->
-        <div class="row">
-            <div class="col">
-                <!-- Image and text -->
-                <nav class="navbar navbar-dark bg-dark">
-                    <a class="navbar-brand" href="./index.html">
-                        <img src="./images/calc.png" width="30" height="30" class="d-inline-block align-top"
-                            alt="Calculator">
-                        Statistical Calculator
-                    </a>
-                </nav>
-            </div>
-        </div>
-        <!-- END NAVBAR -->
 
-        <!-- START CALCULATOR -->
+<body>
+    <!-- START NAVBAR -->
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="./index.html">
+            <img src="./images/calc.png" width="30" height="30" class="d-inline-block align-top" alt="Calculator">
+            Statistical Calculator
+        </a>
+    </nav>
+    <!-- END NAVBAR -->
+
+    <!-- START CALCULATOR -->
+    <div class="containter-fluid">
         <div class="row justify-content-center">
-            <div class="col-4">
+            <div class="col-3">
                 <!-- TEXT AREA -->
-                <label for="userInput">Enter 5 to 20 numbers (ranging in value between 0 and 100).<br>
-                    Exactly one (1) space must separate each number.</label><br><br>
-                <textarea id="userInput" class="form-control" form="userForm" rows="4" cols="52" required></textarea><br>
+                <label class="text-center font-weight-bold pt-2" for="userInput">Enter 5 to 20 numbers (ranging in value
+                    between 0 and 100).<br>
+                    Exactly one (1) space must separate each number.</label>
+                <textarea id="userInput" class="form-control" form="userForm" rows="4" cols="50" required></textarea>
 
                 <!-- BUTTONS (RESET, SUBMIT) -->
-
-                <form name="userForm" id="userForm" onSubmit="performStatistics(); return false">
+                <form class="d-flex pt-2" name="userForm" id="userForm" onSubmit="performStatistics(); return false">
                     <input type="reset" class="btn btn-secondary" value="Reset">
-                    <input type="submit" class="btn btn-primary" value="Submit"><br><br>
+                    <input type="submit" class="btn btn-primary ml-auto" value="Submit">
                 </form>
 
-                <div id="text-fields">
+                <div class="pt-4" id="text-fields">
                     <!-- (8) TEXT FIELDS -->
-                    <label for="Min">Min: </label>
+                    <label for="min">Min: </label>
                     <input type="text" class="form-control" name="Min" id="min" readonly>
 
-                    <label for="Max">Max: </label>
+                    <label for="max">Max: </label>
                     <input type="text" class="form-control" name="Max" id="max" readonly>
 
-                    <label for="Sum">Sum: </label>
+                    <label for="sum">Sum: </label>
                     <input type="text" class="form-control" name="Sum" id="sum" readonly>
 
-                    <label for="Mean">Mean: </label>
+                    <label for="mean">Mean: </label>
                     <input type="text" class="form-control" name="Mean" id="mean" readonly>
 
-                    <label for="Median">Median: </label>
+                    <label for="median">Median: </label>
                     <input type="text" class="form-control" name="Median" id="median" readonly>
 
-                    <label for="Mode">Mode: </label>
+                    <label for="mode">Mode: </label>
                     <input type="text" class="form-control" name="Mode" id="mode" readonly>
 
-                    <label for="Variance">Variance: </label>
+                    <label for="variance">Variance: </label>
                     <input type="text" class="form-control" name="Variance" id="variance" readonly>
 
-                    <label for="Std Dev">Std Dev: </label>
+                    <label for="stdDev">Std Dev: </label>
                     <input type="text" class="form-control" name="Std Dev" id="stdDev" readonly>
                 </div>
             </div>
@@ -90,6 +85,5 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
 </body>
-
 
 </html>
