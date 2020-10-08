@@ -1,0 +1,13 @@
+C:\Users\mwhalen\OneDrive\Programming\College\Web-Systems-Development\Assignments\Program1\bin\Debug\netcoreapp3.1\Program1.exe
+C:\Users\mwhalen\OneDrive\Programming\College\Web-Systems-Development\Assignments\Program1\bin\Debug\netcoreapp3.1\Program1.deps.json
+C:\Users\mwhalen\OneDrive\Programming\College\Web-Systems-Development\Assignments\Program1\bin\Debug\netcoreapp3.1\Program1.runtimeconfig.json
+C:\Users\mwhalen\OneDrive\Programming\College\Web-Systems-Development\Assignments\Program1\bin\Debug\netcoreapp3.1\Program1.runtimeconfig.dev.json
+C:\Users\mwhalen\OneDrive\Programming\College\Web-Systems-Development\Assignments\Program1\bin\Debug\netcoreapp3.1\Program1.dll
+C:\Users\mwhalen\OneDrive\Programming\College\Web-Systems-Development\Assignments\Program1\bin\Debug\netcoreapp3.1\Program1.pdb
+C:\Users\mwhalen\OneDrive\Programming\College\Web-Systems-Development\Assignments\Program1\obj\Debug\netcoreapp3.1\Program1.csprojAssemblyReference.cache
+C:\Users\mwhalen\OneDrive\Programming\College\Web-Systems-Development\Assignments\Program1\obj\Debug\netcoreapp3.1\Program1.AssemblyInfoInputs.cache
+C:\Users\mwhalen\OneDrive\Programming\College\Web-Systems-Development\Assignments\Program1\obj\Debug\netcoreapp3.1\Program1.AssemblyInfo.cs
+C:\Users\mwhalen\OneDrive\Programming\College\Web-Systems-Development\Assignments\Program1\obj\Debug\netcoreapp3.1\Program1.csproj.CoreCompileInputs.cache
+C:\Users\mwhalen\OneDrive\Programming\College\Web-Systems-Development\Assignments\Program1\obj\Debug\netcoreapp3.1\Program1.dll
+C:\Users\mwhalen\OneDrive\Programming\College\Web-Systems-Development\Assignments\Program1\obj\Debug\netcoreapp3.1\Program1.pdb
+C:\Users\mwhalen\OneDrive\Programming\College\Web-Systems-Development\Assignments\Program1\obj\Debug\netcoreapp3.1\Program1.genruntimeconfig.cache
