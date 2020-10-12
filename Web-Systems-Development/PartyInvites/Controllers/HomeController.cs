@@ -17,12 +17,21 @@ namespace PartyInvites.Controllers
             return View("MyView");
         }
 
+        [HttpGet]
         public ViewResult RsvpForm()
         {
             return View();
         }
 
-/*        public IActionResult About()
+        [HttpPost]
+        public ViewResult RsvpForm(GuestResponse guestResponse)
+        {
+            Repository.AddResponse(guestResponse);
+            return View("Thanks", guestResponse);
+        }
+
+        /*      
+        public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
 
