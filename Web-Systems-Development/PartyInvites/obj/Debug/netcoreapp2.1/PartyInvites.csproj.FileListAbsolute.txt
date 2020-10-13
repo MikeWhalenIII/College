@@ -37,3 +37,4 @@ C:\Users\mwhalen\OneDrive\Programming\College\Web-Systems-Development\PartyInvit
 C:\Users\mwhalen\OneDrive\Programming\College\Web-Systems-Development\PartyInvites\obj\Debug\netcoreapp2.1\PartyInvites.csproj.CopyComplete
 C:\Users\mwhalen\OneDrive\Programming\College\Web-Systems-Development\PartyInvites\obj\Debug\netcoreapp2.1\Razor\Views\Home\RsvpForm.cshtml.g.cs
 C:\Users\mwhalen\OneDrive\Programming\College\Web-Systems-Development\PartyInvites\obj\Debug\netcoreapp2.1\Razor\Views\Home\Thanks.cshtml.g.cs
+C:\Users\mwhalen\OneDrive\Programming\College\Web-Systems-Development\PartyInvites\obj\Debug\netcoreapp2.1\Razor\Views\Home\ListResponses.cshtml.g.cs
