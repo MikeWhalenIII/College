@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Search Form</title>
+    <script src="./script.js"></script>
+</head>
+
+<body>
+<h4>Welcome, <?= $_SESSION['display_name'] ?> <a href='#' onclick='confirmLogout();'>logout</a></h4><br>
+
+<h1>myMovies Xpress!</h1><br>
+
+<pre>Use the form below to search for the movie you would like to add to the cart.</pre>
+
+<form action="./search.php" method="post">
+    <label for="keyword">Keyword to Search: </label>
+    <input type="text" id="keyword" name="keyword" required><br><br>
+
+    <!-- BUTTONS -->
+    <button type="button" onclick="window.location.href='./index.php'">Cancel</button>
+    <button type="reset" value="Clear">Clear</button>
+    <button type="submit" value="Search">Search</button>
+</form>
+
+</body>
+</html>

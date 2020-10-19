@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Shopping Cart</title>
+    <script src="./script.js"></script>
+</head>
+
+<body>
+<?php if (!$_SESSION['isEmail'] == true): ?>
+    <h4>Welcome, <?= $_SESSION['display_name'] ?> <a href='#' onclick='confirmLogout();'>logout</a></h4><br>
+<?php endif; ?>
+
+<h1>myMovies Xpress!</h1><br>
+<?php if (!$_SESSION['isEmail'] == true) { ?>
+    <pre><?= count(array_filter($_SESSION['cart_array'])) ?> Movies in Your Shopping Cart</pre>
+<?php } else if ($_SESSION['isEmail'] == true) { ?>
+    <pre>This is your receipt for <?= count(array_filter($_SESSION['cart_array'])) ?> movies you purchased from myMovies
+Express!</pre>
+<?php } ?>
+
+<?php
+$arrCount = count(array_filter($_SESSION['cart_array']));
+if ($arrCount == 0):
+    echo 'Add Some Movies to Your Cart';
+elseif ($arrCount >= 1): ?>
+
+    <table>
+        <th>Poster</th>
+        <th>Title(year)</th>
+        <?php if (!$_SESSION['isEmail'] == true): ?>
+            <th>Remove</th>
+        <?php endif; ?>
+        <?php $trimmedCartArray = array_map('trim', $_SESSION['cart_array']); ?>
+        <?php foreach ($trimmedCartArray as $result):
+            $movie = file_get_contents("http://www.omdbapi.com/?apikey=af97ecdd&i=" . $result . "&type=movie&r=json");
+            $array = json_decode($movie, true); ?>
+            <tr>
+                <td><img src="<?php if ($array["Poster"] == 'N/A') {
+                        echo './images/no-cover.png';
+                    } else {
+                        echo $array["Poster"];
+                    } ?>" height="100"/></td>
+                <td><a href="https://www.imdb.com/title/<?= $array["imdbID"] ?>/"
+                       target="_blank"> <?= $array["Title"] . ' (' . $array["Year"] . ')'; ?></a></td>
+                <td><a href="#"
+                       onclick="confirmRemove('<?= $array["Title"] ?>', '<?= $array["imdbID"] ?>');"> <?php if (!$_SESSION['isEmail'] == true) {
+                            echo 'X';
+                        } ?></a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+<?php endif; ?>
+<br><br>
+
+<?php if (!$_SESSION['isEmail'] == true): ?>
+    <!-- Add Movie and Checkout buttons -->
+    <button type="button" onclick="window.location.href='./search.php'">Add Movie</button>
+    <button type="button" onclick="confirmCheckout()">Checkout</button>
+<?php endif; ?>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Search Results</title>
+    <script src="./script.js"></script>
+</head>
+
+<body>
+<h4>Welcome, <?= $_SESSION['display_name'] ?> <a href='#' onclick='confirmLogout();'>logout</a></h4><br>
+
+<h1>myMovies Xpress!</h1><br>
+
+<pre><?php if (isset($_SESSION["SearchArray"]["Error"]) == 'Movie not found!') {
+        echo '0';
+        $arrCount = 0;
+    } else {
+        $arrCount = count(array_filter($_SESSION['SearchArray']['Search']));
+        echo($arrCount); }?> Movies Found</pre>
+
+<!-- DISPLAY SEARCH RESULTS -->
+<?php
+//$arrCount = count(array_filter($_SESSION['SearchArray']));
+if ($arrCount >= 1):
+    ?>
+    <table>
+        <th>Poster</th>
+        <th>Title(year)</th>
+        <th>Add</th>
+        <?php array_splice($_SESSION['SearchArray'], 1); ?>
+        <?php if (is_array($_SESSION['SearchArray']) || is_object($_SESSION['SearchArray'])): ?>
+            <?php foreach ($_SESSION['SearchArray'] as $results => $movies): ?>
+                <?php foreach ($movies as $movie): ?>
+                    <tr>
+                        <td><img src="<?php if ($movie["Poster"] == 'N/A') {
+                                echo './images/no-cover.png';
+                            } else {
+                                echo $movie["Poster"];
+                            } ?>" height="100"/></td>
+                        <td><a href="https://www.imdb.com/title/<?= $movie["imdbID"] ?>/"
+                               target="_blank"> <?= $movie["Title"] . ' (' . $movie["Year"] . ')'; ?></a></td>
+                        <td><a href="#" onclick="addMovie('<?= $movie["imdbID"] ?>');"> <?php echo '+'; ?></a></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </table>
+<?php endif; ?>
+
+<!-- CANCEL BUTTON -->
+<button type="button" onclick="window.location.href='./index.php'">Cancel</button>
+
+</body>
+</html>

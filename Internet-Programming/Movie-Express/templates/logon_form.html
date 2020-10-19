@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<head>
+    <title>myMovies Xpress Logon</title>
+</head>
+
+    <body>
+        <h1>myMovies Xpress!</h1><br>
+        <p>Enter your username and password to login.</p><br>
+
+        <!-- ERROR MESSAGE -->
+        <?php if(!empty($message)):?>
+                <span style="color: red;"><?= $message ?></span><br>
+        <?php endif; ?><br>
+
+        <form action="./logon.php" method="post">
+            <label for="username">Username: </label>
+            <input type="text" name="username" id="username" required>
+            <br>
+            <label for="pwd">Password: </label>
+            <input type="password" id="pwd" name="pwd" required>
+            <br><br>
+            <button type="reset" value="Clear">Clear</button>
+            <button type="submit" value="Login">Login</button>
+        </form><br>
+
+        <!-- EPORTFOLIO LINK -->
+        <a href="../index.html">ePortfolio</a>
+    </body>
+</html>
