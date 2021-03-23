@@ -1,6 +1,9 @@
 public class Compute {
     private String[] datesArray;
     private double[] scoreArray;
+    double[] mean = new double[5];
+    double[] stdDev = new double[5];
+    private final int scoresForEachDay = 24;
 
     public Compute(String[] dates, double[] scores) {
         datesArray = dates;
@@ -12,64 +15,71 @@ public class Compute {
         System.out.printf("%-7s %-9s %-9s %-9s %-9s %-9s\n", "Student", datesArray[0], datesArray[1], datesArray[2], datesArray[3], datesArray[4]);
 
         // Display all student score data
-        for (int i = 0; i < 24; i++) {
+        for (int i = 0; i < scoresForEachDay; i++) {
             System.out.printf("%-10d %-9.0f %-9.0f %-9.0f %-9.0f %-9.0f\n", (i + 1), scoreArray[i], scoreArray[i + 24], scoreArray[i + 48], scoreArray[i + 72], scoreArray[i + 96]);
         }
 
         // Compute and display the mean
-        double mean1 = 0, mean2 = 0, mean3 = 0, mean4 = 0, mean5 = 0;
-
         for (int i = 0; i < scoreArray.length; i++) {
             if (i <= 23) {
-                mean1 += scoreArray[i];
+                mean[0] += scoreArray[i];
             } else if (i >= 24 && i <= 47) {
-                mean2 += scoreArray[i];
+                mean[1] += scoreArray[i];
             } else if (i >= 48 && i <= 71) {
-                mean3 += scoreArray[i];
+                mean[2] += scoreArray[i];
             } else if (i >= 72 && i <= 95) {
-                mean4 += scoreArray[i];
+                mean[3] += scoreArray[i];
             } else if (i >= 96 && i <= 119) {
-                mean5 += scoreArray[i];
+                mean[4] += scoreArray[i];
             }
         }
-        mean1 = mean1 / 24;
-        mean2 = mean2 / 24;
-        mean3 = mean3 / 24;
-        mean4 = mean4 / 24;
-        mean5 = mean5 / 24;
+        mean[0] = mean[0] / scoresForEachDay;
+        mean[1] = mean[1] / scoresForEachDay;
+        mean[2] = mean[2] / scoresForEachDay;
+        mean[3] = mean[3] / scoresForEachDay;
+        mean[4] = mean[4] / scoresForEachDay;
 
         System.out.println("************************************************************");
-        System.out.printf("%-10s %-9.2f %-9.2f %-9.2f %-9.2f %-9.2f\n", "Mean", mean1, mean2, mean3, mean4, mean5);
+        System.out.printf("%-10s %-9.2f %-9.2f %-9.2f %-9.2f %-9.2f\n", "Mean", mean[0], mean[1], mean[2], mean[3], mean[4]);
 
         // Compute and display the Standard Deviation
-        double sd1 = 0, sd2 = 0, sd3 = 0, sd4 = 0, sd5 = 0;
-
         for (int i = 0; i < scoreArray.length; i++) {
             if (i <= 23) {
-                sd1 += Math.pow((scoreArray[i] - mean1), 2);
+                stdDev[0] += Math.pow((scoreArray[i] - mean[0]), 2);
             } else if (i >= 24 && i <= 47) {
-                sd2 += Math.pow((scoreArray[i] - mean2), 2);
+                stdDev[1] += Math.pow((scoreArray[i] - mean[1]), 2);
             } else if (i >= 48 && i <= 71) {
-                sd3 += Math.pow((scoreArray[i] - mean3), 2);
+                stdDev[2] += Math.pow((scoreArray[i] - mean[2]), 2);
             } else if (i >= 72 && i <= 95) {
-                sd4 += Math.pow((scoreArray[i] - mean4), 2);
+                stdDev[3] += Math.pow((scoreArray[i] - mean[3]), 2);
             } else if (i >= 96 && i <= 119) {
-                sd5 += Math.pow((scoreArray[i] - mean5), 2);
+                stdDev[4] += Math.pow((scoreArray[i] - mean[4]), 2);
             }
         }
-        sd1 = Math.sqrt(sd1 / 24);
-        sd2 = Math.sqrt(sd2 / 24);
-        sd3 = Math.sqrt(sd3 / 24);
-        sd4 = Math.sqrt(sd4 / 24);
-        sd5 = Math.sqrt(sd5 / 24);
+        stdDev[0] = Math.sqrt(stdDev[0] / scoresForEachDay);
+        stdDev[1] = Math.sqrt(stdDev[1] / scoresForEachDay);
+        stdDev[2] = Math.sqrt(stdDev[2] / scoresForEachDay);
+        stdDev[3] = Math.sqrt(stdDev[3] / scoresForEachDay);
+        stdDev[4] = Math.sqrt(stdDev[4] / scoresForEachDay);
 
-        System.out.printf("%-10s %-9.2f %-9.2f %-9.2f %-9.2f %-9.2f\n", "Std Dev", sd1, sd2, sd3, sd4, sd5);
+        System.out.printf("%-10s %-9.2f %-9.2f %-9.2f %-9.2f %-9.2f\n", "Std Dev", stdDev[0], stdDev[1], stdDev[2], stdDev[3], stdDev[4]);
     }
 
     public void computeDifferences() {
+        double tValue = 0, sp = 0, diff = 0, degOfFreedom = 46, criticalTValue = 2.25;
+
         System.out.println("\nSignificant Differences in Mean Scores\n");
         System.out.printf("%20s %-9s %-9s %-9s\n", datesArray[1], datesArray[2], datesArray[3], datesArray[4]);
 
+        for (int i = 0; i < datesArray.length - 1; i++) {
+            sp = (((scoresForEachDay - 1) * Math.pow(stdDev[i], 2)) + ((scoresForEachDay - 1) * Math.pow(stdDev[i + 1], 2))) / degOfFreedom;
+            tValue = (mean[i] - mean [i + 1]) / (sp * Math.sqrt((1/scoresForEachDay + 1/scoresForEachDay)));
 
+            if (tValue <= criticalTValue) {
+                System.out.println(datesArray[i] + tValue + "No");
+            } else {
+                System.out.println(datesArray[i] + tValue + "Yes");
+            }
+        }
     }
 }
