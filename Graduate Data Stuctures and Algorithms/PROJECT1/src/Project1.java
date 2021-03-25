@@ -4,7 +4,7 @@ public class Project1 {
 
     public static void main(String[] args) throws FileNotFoundException {
         // Display welcome message
-        System.out.println("Welcome! COP5416 - Project I");
+        System.out.println("COP5416 - Project I\nMichael Whalen");
 
         Reader r = new Reader("dailyScores.txt");
 

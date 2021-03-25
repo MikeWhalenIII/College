@@ -6,8 +6,8 @@ public class Reader {
 
     private final String filename;
 
-    private String[] datesArray;
-    private double[] scoreArray;
+    private final String[] datesArray;
+    private final double[] scoreArray;
 
     public Reader(String filename) throws FileNotFoundException {
         datesArray = new String[5];

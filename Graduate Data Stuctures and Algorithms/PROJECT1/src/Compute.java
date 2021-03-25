@@ -1,9 +1,9 @@
 public class Compute {
-    private String[] datesArray;
-    private double[] scoreArray;
+    private final double scoresForEachDay = 24;
     double[] mean = new double[5];
     double[] stdDev = new double[5];
-    private final double scoresForEachDay = 24;
+    private final String[] datesArray;
+    private final double[] scoreArray;
 
     public Compute(String[] dates, double[] scores) {
         datesArray = dates;
@@ -71,22 +71,22 @@ public class Compute {
         System.out.println("\nSignificant Differences in Mean Scores\n");
         System.out.printf("%20s %-9s %-9s %-9s\n", datesArray[1], datesArray[2], datesArray[3], datesArray[4]);
 
+
         for (int i = 0; i < datesArray.length - 1; i++) {
-            System.out.print(datesArray[i]);
+            System.out.printf("%s", datesArray[i]);
+            String[] output = new String[]{" ", " ", " ", " "};
+
             for (int j = i + 1; j <= datesArray.length - 1; j++) {
-                sp = Math.sqrt((((scoresForEachDay - 1) * Math.pow(stdDev[i], 2)) + ((scoresForEachDay - 1) * Math.pow(stdDev[i + 1], 2))) / degOfFreedom);
-                tValue = (mean[i] - mean[i + 1]) / (sp * Math.sqrt((1/scoresForEachDay + 1/scoresForEachDay)));
+                sp = Math.sqrt((((scoresForEachDay - 1) * Math.pow(stdDev[i], 2)) + ((scoresForEachDay - 1) * Math.pow(stdDev[j], 2))) / degOfFreedom);
+                tValue = (mean[i] - mean[j]) / (sp * Math.sqrt((1 / scoresForEachDay + 1 / scoresForEachDay)));
 
                 if (tValue <= criticalTValue) {
-                    System.out.printf("%8s", "N");
-                    //System.out.print(tValue);
+                    output[j - 1] = "N";
                 } else {
-                    System.out.printf("%8s", "Y");
-                    //System.out.print(tValue);
-
+                    output[j - 1] = "Y";
                 }
             }
-            System.out.println("");
+            System.out.printf("%6s %9s %9s %9s\n", output[0], output[1], output[2], output[3]);
         }
     }
 }
