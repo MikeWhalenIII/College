@@ -1,3 +1,13 @@
+/***********************************************************************
+ Michael Whalen
+ Project1.java
+ COP5416 - Project I
+
+ This class is used to compute the mean and standard deviation for each day.
+ And this class determines if there is a significant difference in each days
+ average scores.
+ ************************************************************************/
+
 public class Compute {
     private final double scoresForEachDay = 24;
     double[] mean = new double[5];
@@ -5,11 +15,19 @@ public class Compute {
     private final String[] datesArray;
     private final double[] scoreArray;
 
+    /**
+     * Constructor
+     * @param dates An array with the dates.
+     * @param scores An array with the scores.
+     */
     public Compute(String[] dates, double[] scores) {
         datesArray = dates;
         scoreArray = scores;
     }
 
+    /**
+     * This method computes the mean and standard deviation for each day.
+     */
     public void computeMeanAndSD() {
         System.out.println("\nMeans and Standard Deviations of Scores\n");
         System.out.printf("%-7s %-9s %-9s %-9s %-9s %-9s\n", "Student", datesArray[0], datesArray[1], datesArray[2], datesArray[3], datesArray[4]);
@@ -65,12 +83,15 @@ public class Compute {
         System.out.printf("%-10s %-9.2f %-9.2f %-9.2f %-9.2f %-9.2f\n", "Std Dev", stdDev[0], stdDev[1], stdDev[2], stdDev[3], stdDev[4]);
     }
 
+    /**
+     * This method does a pair-wise T-tests on the means to determine if there is
+     * a significant difference between the means of each day.
+     */
     public void computeDifferences() {
         double tValue = 0, sp = 0, sp2 = 0, degOfFreedom = 46, criticalTValue = 2.25;
 
         System.out.println("\nSignificant Differences in Mean Scores\n");
         System.out.printf("%20s %-9s %-9s %-9s\n", datesArray[1], datesArray[2], datesArray[3], datesArray[4]);
-
 
         for (int i = 0; i < datesArray.length - 1; i++) {
             System.out.printf("%s", datesArray[i]);

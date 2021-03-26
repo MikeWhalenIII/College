@@ -1,3 +1,11 @@
+/***********************************************************************
+ Michael Whalen
+ Project1.java
+ COP5416 - Project I
+
+ This class is used to read the text files and extract the data from them.
+ ************************************************************************/
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -5,10 +13,14 @@ import java.util.Scanner;
 public class Reader {
 
     private final String filename;
-
     private final String[] datesArray;
     private final double[] scoreArray;
 
+    /**
+     * Constructor
+     * @param filename The filename for the text file.
+     * @throws FileNotFoundException If the file is not found.
+     */
     public Reader(String filename) throws FileNotFoundException {
         datesArray = new String[5];
         scoreArray = new double[120];
@@ -16,14 +28,27 @@ public class Reader {
         readFile();
     }
 
+    /**
+     * A getter method that returns an array with the dates.
+     * @return An array filled with the dates.
+     */
     public String[] getDatesArray() {
         return datesArray;
     }
 
+    /**
+     * A getter method that returns an array with the scores.
+     * @return An array filled with the scores.
+     */
     public double[] getScoreArray() {
         return scoreArray;
     }
 
+    /**
+     * This method reads the text file and extracts the data into a
+     * dates array and a scores array.
+     * @throws FileNotFoundException Thrown if the file is not found.
+     */
     private void readFile() throws FileNotFoundException {
         Scanner fileReader = null;
 
