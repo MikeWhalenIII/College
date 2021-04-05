@@ -27,15 +27,28 @@ public class Stack {
         numOfNodesOnStack++;
     }
 
+    private boolean isEmpty() {
+        return (top == null);
+    }
+
     public Node pop() {
-        
+        Node node = top;
+
+        if (isEmpty() == true) {
+            System.out.println("Stack is empty!");
+        } else {
+            top = top.next;
+        }
+        numOfNodesOnStack--; // Decrease the number of total links by 1.
+
+        return node;
     }
 
 }
 
-private class Node {
-    private String data;
-    private Node next;
+class Node {
+    public Node next;
+    public String data;
 
     public Node(String data) {
         this.data = data;
