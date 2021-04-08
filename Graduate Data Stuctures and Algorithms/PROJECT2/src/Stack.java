@@ -15,7 +15,7 @@ public class Stack {
         numOfNodesOnStack = 0;
     }
 
-    public void push(String data) {
+    public void push(char data) {
         Node newNode = new Node(data);
 
         if (isEmpty()) {
@@ -27,11 +27,11 @@ public class Stack {
         numOfNodesOnStack++;
     }
 
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         return (top == null);
     }
 
-    public Node pop() {
+    public char pop() {
         Node node = top;
 
         if (isEmpty() == true) {
@@ -41,16 +41,16 @@ public class Stack {
         }
         numOfNodesOnStack--; // Decrease the number of total links by 1.
 
-        return node;
+        return node.data;
     }
 
 }
 
 class Node {
     public Node next;
-    public String data;
+    public char data;
 
-    public Node(String data) {
+    public Node(char data) {
         this.data = data;
         next = null;
     }
