@@ -8,13 +8,18 @@
 
 public class Stack {
     private Node top;
-    private int numOfNodesOnStack;
 
+    /**
+     * Constructor
+     */
     public Stack() {
         top = null;
-        numOfNodesOnStack = 0;
     }
 
+    /**
+     * Adds a new item to the stack.
+     * @param data
+     */
     public void push(char data) {
         Node newNode = new Node(data);
 
@@ -24,13 +29,20 @@ public class Stack {
             newNode.next = top;
             top = newNode;
         }
-        numOfNodesOnStack++;
     }
 
+    /**
+     * Checks if the stack is empty
+     * @return True/False on whether the stack is empty.
+     */
     public boolean isEmpty() {
         return (top == null);
     }
 
+    /**
+     * Removes and item from the stack and returns its data.
+     * @return The items data.
+     */
     public char pop() {
         Node node = top;
 
@@ -39,17 +51,22 @@ public class Stack {
         } else {
             top = top.next;
         }
-        numOfNodesOnStack--; // Decrease the number of total links by 1.
-
         return node.data;
     }
 
 }
 
+/**
+ * Node class
+ */
 class Node {
     public Node next;
     public char data;
 
+    /**
+     * Constructor
+     * @param data The data to be stored in the node.
+     */
     public Node(char data) {
         this.data = data;
         next = null;

@@ -3,7 +3,7 @@
  Reader.java
  COP5416 - Project II
 
-
+ This class reads the text file and extracts the expression to a 2D array.
  ************************************************************************/
 
 import java.io.File;
@@ -15,16 +15,31 @@ public class Reader {
     private final String filename;
     private final String[][] txtFileArray;
 
+    /**
+     * Constructor
+     *
+     * @param filename The file to be read.
+     * @throws FileNotFoundException If the file is not found.
+     */
     public Reader(String filename) throws FileNotFoundException {
         txtFileArray = new String[18][3];
         this.filename = filename;
         readFile();
     }
 
+    /**
+     * Returns the text file data in a 2D array.
+     * @return 2D array of text file data.
+     */
     public String[][] getTxtFileArray() {
         return txtFileArray;
     }
 
+    /**
+     * The method reads the text file.
+     *
+     * @throws FileNotFoundException If the file is not found.
+     */
     private void readFile() throws FileNotFoundException {
         Scanner fileReader = null;
 
