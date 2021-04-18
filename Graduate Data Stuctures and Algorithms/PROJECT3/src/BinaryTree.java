@@ -1,5 +1,12 @@
+/***********************************************************************
+ Michael Whalen
+ BinaryTree.java
+ COP5416 - Project III
+ This class reads the two text files, words.txt and encoded.txt
+ ************************************************************************/
+
 public class BinaryTree {
-    private Node root;
+    private final Node root;
 
     public BinaryTree() {
         // Create an empty root node
@@ -28,8 +35,29 @@ public class BinaryTree {
         }
     }
 
-    public void find() {
+    public String search(String code) {
+        Node current;
 
+        // Split the string
+        String[] codeArr = code.split(" ");
+        StringBuilder sb = new StringBuilder();
+
+            // Iterate through the code array
+            for (int i = 0; i < codeArr.length; i++) {
+                current = root;
+                String splitCode = codeArr[i];
+                // Iterate through each character in the string
+                for (int j = 0; j < splitCode.length(); j++) {
+                    if (splitCode.charAt(j) == '+') {
+                        current = current.rightChild;
+                    } else if(splitCode.charAt(j) == '-') {
+                        current = current.leftChild;
+                    }
+                }
+                sb.append(current.data).append(" ");
+            }
+
+        return sb.toString();
     }
 }
 

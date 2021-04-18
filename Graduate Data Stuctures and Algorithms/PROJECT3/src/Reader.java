@@ -2,7 +2,8 @@
  Michael Whalen
  Reader.java
  COP5416 - Project III
- This class reads the two text files, words.txt and encoded.txt
+ This class reads the two text files, words.txt and encoded.txt and then
+ stores the results in a 1D and 2D array.
  ************************************************************************/
 
 import java.io.File;
