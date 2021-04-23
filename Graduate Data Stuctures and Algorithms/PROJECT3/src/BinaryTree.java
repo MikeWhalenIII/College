@@ -2,17 +2,26 @@
  Michael Whalen
  BinaryTree.java
  COP5416 - Project III
- This class reads the two text files, words.txt and encoded.txt
+ This class contains the code for a BinaryTree. It provides methods to
+ insert and search the binary tree. The class also contains the Node class.
  ************************************************************************/
 
 public class BinaryTree {
     private final Node root;
 
+    /**
+     * Constructor
+     */
     public BinaryTree() {
         // Create an empty root node
         root = new Node(null);
     }
 
+    /**
+     * Inserts a new node into the tree.
+     * @param word will be assigned to the data field of the new node.
+     * @param symbol Used to determine left/right subtree.
+     */
     public void insert(String word, String symbol) {
         Node current = root;
         Node previous = current;
@@ -35,6 +44,12 @@ public class BinaryTree {
         }
     }
 
+    /**
+     * This method takes in an encoded string and
+     * decodes it by traversing the tree.
+     * @param code the encoded message.
+     * @return The decoded message.
+     */
     public String search(String code) {
         Node current;
 
@@ -56,7 +71,6 @@ public class BinaryTree {
                 }
                 sb.append(current.data).append(" ");
             }
-
         return sb.toString();
     }
 }
@@ -66,6 +80,10 @@ class Node {
     Node leftChild = null;
     Node rightChild = null;
 
+    /**
+     * Constructor
+     * @param data
+     */
     public Node(String data) {
         this.data = data;
     }

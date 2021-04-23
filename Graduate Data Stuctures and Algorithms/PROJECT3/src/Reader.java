@@ -15,6 +15,11 @@ public class Reader {
     private final String[][] wordsArray;
     private final String[] encodedArray;
 
+    /**
+     * Constructor
+     * @param wordsTxtFile words txt file
+     * @param encodedTxtFile encoded txt file
+     */
     public Reader(String wordsTxtFile, String encodedTxtFile) {
         wordsArray = new String[25][2];
         encodedArray = new String[5];
@@ -22,14 +27,27 @@ public class Reader {
         readEncodedFile(encodedTxtFile);
     }
 
+    /**
+     * Returns an array that was created from the words.txt file
+     * @return words array
+     */
     public String[][] getWordsArray() {
         return wordsArray;
     }
 
+    /**
+     * Returns an array that was created from the encoded.txt file
+     * @return encoded array
+     */
     public String[] getEncodedArray() {
         return encodedArray;
     }
 
+    /**
+     * This function, reads the words.txt file into a
+     * 2D array.
+     * @param wordsTxtFile
+     */
     private void readWordsFile(String wordsTxtFile) {
         Scanner fileReader = null;
 
@@ -54,6 +72,10 @@ public class Reader {
         }
     }
 
+    /**
+     * This method reads the encoded.txt into an array.
+     * @param encodedTxtFile
+     */
     private void readEncodedFile(String encodedTxtFile) {
         Scanner fileReader = null;
 
