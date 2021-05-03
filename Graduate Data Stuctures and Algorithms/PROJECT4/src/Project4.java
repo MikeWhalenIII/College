@@ -4,6 +4,7 @@ public class Project4 {
 
     public static void main(String[] args) {
 
+        System.out.println("==================================\nInput\n==================================\n");
         // Read the Dictionary and Test file
         Reader r = new Reader("Dictionary.txt", "testTextFile.txt");
 
@@ -21,6 +22,7 @@ public class Project4 {
             dictionary.insert(dictionaryArr[i]);
         }
 
+        System.out.println("==================================\nSpelling Checker\n==================================\n");
         // Spell check the test file
         SpellChecker sc = new SpellChecker(dictionary);
         for (String s:testFileArrList) {
