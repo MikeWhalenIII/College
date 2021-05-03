@@ -13,8 +13,8 @@ public class SpellChecker {
         if (!dictionary.find(s)) {
             System.out.println("'" + s + "' may be incorrectly spelled.\nSuggestions:");
             oneLetterMissing(s);
-            oneLetterAdded(s);
-            twoLettersReversed(s);
+            //oneLetterAdded(s);
+            //twoLettersReversed(s);
 
             // Print suggestions
             printSuggestions();
@@ -25,17 +25,17 @@ public class SpellChecker {
     }
 
     private void oneLetterMissing(String s) {
-        char[] test;
+        char[] word;
 
         for (int i = 0; i < s.length(); i++) {
-            test = s.toCharArray();
+            word = s.toCharArray();
             for (char ch = 'a'; ch <= 'z'; ch++) {
-                test[i] = ch;
+                word[i] = ch;
 
                 // Check to see if word exist in dictionary
-                if (dictionary.find(String.valueOf(test))) {
-                    if (!suggestions.contains(String.valueOf(test))) {
-                        suggestions.add(String.valueOf(test));
+                if (dictionary.find(String.valueOf(word))) {
+                    if (!suggestions.contains(String.valueOf(word))) {
+                        suggestions.add(String.valueOf(word));
                     }
                 }
             }
@@ -59,7 +59,21 @@ public class SpellChecker {
     }
 
     private void twoLettersReversed(String s) {
+        char[] sCharArr = s.toCharArray();
+        char[] word = s.toCharArray();
 
+        for (int i = 0; i < s.length() - 1; i++) {
+            char temp = word[i];
+            word[i] = word[i+1];
+            word[i+1] = temp;
+
+            // Check to see if word exist in dictionary
+            if (dictionary.find(String.valueOf(word))) {
+                if (!suggestions.contains(String.valueOf(word))) {
+                    suggestions.add(String.valueOf(word));
+                }
+            }
+        }
     }
 
     private void printSuggestions() {
