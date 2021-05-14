@@ -1,7 +1,23 @@
-public class HashTable {
-    private LinkedList[] hashArray;
-    private int arraySize;
+/***********************************************************************
+ Michael Whalen
+ HashTable.java
+ COP5416 - Project IV
+ This file contains the code for a HashTable. It provides methods to
+ insert and find data in the HashTable.
 
+ This file also includes the code for a LinkedList in order to create a
+ externally chained HashTable.
+ ************************************************************************/
+
+public class HashTable {
+    private final LinkedList[] hashArray;
+    private final int arraySize;
+
+    /**
+     * Constructor
+     *
+     * @param size the size of the hash table
+     */
     public HashTable(int size) {
         arraySize = size;
         hashArray = new LinkedList[arraySize];
@@ -12,23 +28,39 @@ public class HashTable {
         }
     }
 
+    /**
+     * Inserts a word into the hash table
+     *
+     * @param word the word to be inserted
+     */
     public void insert(String word) {
         // Insert the word at the hash value just computed
         Node node = new Node(hashFunction(word), word);
         hashArray[hashFunction(word)].insert(node);
     }
 
+    /**
+     * Checks to see if the given word is present in
+     * the hash table.
+     *
+     * @param word The word to search for
+     * @return TRUE:  Word is found in hash table
+     * FALSE: Word is not found in hash table
+     */
     public Boolean find(String word) {
         // Compute the hash value of the word
         int hashValue = hashFunction(word);
 
-        if(hashArray[hashValue].find(word)) {
-            return true; // word found in dictionary
-        } else {
-            return false; // word not found in dictionary
-        }
+        // word not found in dictionary
+        return hashArray[hashValue].find(word); // word found in dictionary
     }
 
+    /**
+     * Computes a hash value of the word passed in.
+     *
+     * @param word The word to hash
+     * @return The hash value of the word
+     */
     private int hashFunction(String word) {
         int hashValue = 0;
 
@@ -39,16 +71,23 @@ public class HashTable {
         }
         return hashValue;
     }
-
 }
 
 class LinkedList {
     private Node first;
 
-    LinkedList(){
+    /**
+     * Constructor
+     */
+    public LinkedList() {
         first = null;
     }
 
+    /**
+     * Inserts a new node into the linked list
+     *
+     * @param node The node to be inserted
+     */
     public void insert(Node node) {
         if (!isEmpty()) {
             node.next = first;
@@ -56,6 +95,14 @@ class LinkedList {
         first = node;
     }
 
+    /**
+     * Checks to see if a node exist in the LL
+     * that contains the provided word.
+     *
+     * @param word The word to search for
+     * @return TRUE:  Word is found
+     * FALSE: Word is not found
+     */
     public boolean find(String word) {
         Node current = first;
 
@@ -71,6 +118,7 @@ class LinkedList {
 
     /**
      * Checks if the Linked List is empty
+     *
      * @return True/False on whether the list is empty.
      */
     public boolean isEmpty() {
@@ -80,14 +128,24 @@ class LinkedList {
 
 class Node {
     public Node next;
-    private int index;
-    private String word;
+    private final String word;
 
+    /**
+     * Constructor
+     *
+     * @param index The index where the node is to be
+     *              stored
+     * @param word  The word to store in the Node
+     */
     Node(int index, String word) {
-        this.index = index;
         this.word = word;
     }
 
+    /**
+     * Returns the word that is stored in the node obj
+     *
+     * @return a word
+     */
     public String getWord() {
         return this.word;
     }

@@ -1,3 +1,17 @@
+/***********************************************************************
+ Michael Whalen
+ Project4.java
+ COP5416 - Project IV
+ This class is the starting point to the program with the main method
+ that creates an instance of the Reader class to read the two text files
+ Dictionary.txt and testTextFile.txt.
+
+ This method also creates a new HashTable and then imports the words from
+ the dictionary file into the hashtable. Next, the method creates an
+ instance of the SpellChecker class and checks the testTextFile.txt
+ for spelling errors.
+ ************************************************************************/
+
 import java.util.ArrayList;
 
 public class Project4 {
@@ -18,14 +32,14 @@ public class Project4 {
         HashTable dictionary = new HashTable((4 * dictionaryArr.length) + 1);
 
         // Import dictionary into HashTable
-        for (int i = 0; i < dictionaryArr.length; i++) {
-            dictionary.insert(dictionaryArr[i]);
+        for (String value : dictionaryArr) {
+            dictionary.insert(value);
         }
 
         System.out.println("==================================\nSpelling Checker\n==================================\n");
         // Spell check the test file
         SpellChecker sc = new SpellChecker(dictionary);
-        for (String s:testFileArrList) {
+        for (String s : testFileArrList) {
             sc.check(s);
         }
     }
