@@ -4,9 +4,13 @@
     {
         static void Main(string[] args)
         {
-            /* Naive Fibbonaci */
-            NaiveFibonacci nf = new NaiveFibonacci();
-            System.Console.WriteLine(nf.f(30));
+            /* Naive Fibonacci */
+            NaiveFibonacci nf = new();
+            System.Console.WriteLine($"Naive: {nf.f(10)}");
+
+            /* Memoized Fibonacci */
+            MemoizedFibonacci mf = new();
+            System.Console.WriteLine($"Memoized: {mf.f(92)}"); // Beyond 92, overflows long data type
         }
     }
 }
