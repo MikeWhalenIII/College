@@ -11,6 +11,10 @@
             /* Memoized Fibonacci */
             MemoizedFibonacci mf = new();
             System.Console.WriteLine($"Memoized: {mf.f(92)}"); // Beyond 92, overflows long data type
+
+            /* Bottom-up Fibonacci */
+            BottomUpFibonacci buf = new();
+            System.Console.WriteLine($"Bottom-up: {buf.f(92)}");
         }
     }
 }
